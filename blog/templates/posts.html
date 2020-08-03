@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Blog Posts</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <!-- This is Blog posts  -->
+            {% if posts %}
+            {% for post in posts %}
+            <div style="border: 6px black solid;padding: 13px;" class="mb-3">
+                <h5 style="font-family: Verdana, Geneva, Tahoma, sans-serif">{{post.title}}</h5>
+                <div class="postbody">Posted At:{{post.publish_date}}</div>
+                <div class="postbody">Author : {{post.author}}</div>
+                <p class="postbody">{{post.post}}...</p>
+                <div class="d-flex justify-content-end">
+                    <p><a class="postbody mr-1" href='/blog/post/{{post.id}}'><strong>More</strong></a></p>
+                    <p><a class="postbody mr-1" href='/blog/post/edit/{{post.id}}'><strong>Edit</strong></a></p>
+                    <p><a class="postbody mr-1" href='/blog/post/delete/{{post.id}}'><strong>Delete</strong></a></p>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- This is for Particular post views -->
+{% if post %}
+<div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <center>
+                <div style="border: 6px black solid;padding: 13px;" class="mb-3">
+                    <h5 style="font-family: Verdana, Geneva, Tahoma, sans-serif">{{post.title}}</h5>
+                    <div class="postbody">Posted At:{{post.publish_date}}</div>
+                    <div class="postbody">Author : {{post.author}}</div>
+                    <p class="postbody">{{post.post}}...</p>
+                    <div class="d-flex justify-content-end">
+                        <p><a class="postbody" href='/blog/posts'>Back</a></p>
+                    </div>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+</div>
+
+{% endblock %}

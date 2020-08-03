@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Blog Posts</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <div class="col-md-12">
+        <div class="d-flex justify-content-center">
+            <div class="col-md-5 pt-5">
+                <form action="/blog/post/" method="POST">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div class="mb-3">
+                        {{ form.title.errors }}
+                        <label for="{{ form.message.title }}" class="form-label" required>Title </label>
+                        {{ form.title }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.author.errors }}
+                        <label for="{{ form.message.author }}" class="form-label" required>Author </label>
+                        {{ form.author }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.content.errors }}
+                        <label for="{{ form.message.content }}" class="form-label" required>Content </label>
+                        {{ form.content }}
+                    </div>
+                   
+                    <button class="btn btn-primary" type="submit">Create Post</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
